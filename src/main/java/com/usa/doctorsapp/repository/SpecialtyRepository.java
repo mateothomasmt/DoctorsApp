@@ -1,7 +1,7 @@
 package com.usa.doctorsapp.repository;
 
 
-import com.usa.doctorsapp.model.SpecialtyModel;
+import com.usa.doctorsapp.model.Specialty;
 import com.usa.doctorsapp.repository.crudrepository.SpecialtyCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,16 +14,16 @@ public class SpecialtyRepository {
     @Autowired
     private SpecialtyCrudRepository specialtyCrudRepository;
 
-    public List<SpecialtyModel> getAll(){
-        return (List<SpecialtyModel>) specialtyCrudRepository.findAll();
+    public List<Specialty> getAll(){
+        return (List<Specialty>) specialtyCrudRepository.findAll();
     }
-    public Optional<SpecialtyModel> getById(Integer id){
+    public Optional<Specialty> getById(Integer id){
         return specialtyCrudRepository.findById(id);
     }
-    public SpecialtyModel save(SpecialtyModel specialty){
+    public Specialty save(Specialty specialty){
         return specialtyCrudRepository.save(specialty);
     }
-    public void delete(SpecialtyModel specialty){
+    public void delete(Specialty specialty){
         specialtyCrudRepository.delete(specialty);
     }
 }

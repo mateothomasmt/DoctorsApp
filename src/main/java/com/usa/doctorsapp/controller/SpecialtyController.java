@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.controller;
 
-import com.usa.doctorsapp.model.SpecialtyModel;
+import com.usa.doctorsapp.model.Specialty;
 import com.usa.doctorsapp.service.SpecialtyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,22 +16,22 @@ public class SpecialtyController {
     @Autowired
     private SpecialtyService specialtyService;
     @GetMapping("/all")
-    public List<SpecialtyModel> getSpecialties(){
+    public List<Specialty> getSpecialties(){
         return specialtyService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<SpecialtyModel> getSpecialty(@PathVariable("id")Integer id){
+    public Optional<Specialty> getSpecialty(@PathVariable("id")Integer id){
         return specialtyService.getById(id);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public SpecialtyModel save(@RequestBody SpecialtyModel specialtyModel){
-        return specialtyService.save(specialtyModel);
+    public Specialty save(@RequestBody Specialty specialty){
+        return specialtyService.save(specialty);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public SpecialtyModel update(@RequestBody SpecialtyModel specialtyModel){
-        return specialtyService.update(specialtyModel);
+    public Specialty update(@RequestBody Specialty specialty){
+        return specialtyService.update(specialty);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

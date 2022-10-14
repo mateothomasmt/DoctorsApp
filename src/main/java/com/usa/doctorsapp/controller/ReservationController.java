@@ -1,7 +1,7 @@
 package com.usa.doctorsapp.controller;
 
 import com.usa.doctorsapp.model.ClientReport;
-import com.usa.doctorsapp.model.ReservationModel;
+import com.usa.doctorsapp.model.Reservation;
 import com.usa.doctorsapp.model.ReservationReport;
 import com.usa.doctorsapp.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +18,22 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
     @GetMapping("/all")
-    public List<ReservationModel> getReservations(){
+    public List<Reservation> getReservations(){
         return reservationService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<ReservationModel> getReservation(@PathVariable("id") Integer id){
+    public Optional<Reservation> getReservation(@PathVariable("id") Integer id){
         return reservationService.getById(id);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReservationModel save(@RequestBody ReservationModel reservationModel){
-        return reservationService.save(reservationModel);
+    public Reservation save(@RequestBody Reservation reservation){
+        return reservationService.save(reservation);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public ReservationModel update(@RequestBody ReservationModel reservationModel){
-        return reservationService.update(reservationModel);
+    public Reservation update(@RequestBody Reservation reservation){
+        return reservationService.update(reservation);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -45,7 +45,7 @@ public class ReservationController {
         return reservationService.getReservationsStatusReport();
     }
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<ReservationModel> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
         return reservationService.getReservationPeriod(dateOne, dateTwo);
     }
     @GetMapping("/report-clients")

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ClientModel implements Serializable {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
@@ -25,9 +25,9 @@ public class ClientModel implements Serializable {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
-    private List<MessageModel> messages;
+    private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
-    private List<ReservationModel> reservations;
+    private List<Reservation> reservations;
 }

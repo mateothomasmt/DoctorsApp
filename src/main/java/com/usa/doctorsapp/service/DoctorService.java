@@ -1,7 +1,6 @@
 package com.usa.doctorsapp.service;
 
-import com.usa.doctorsapp.model.ClientModel;
-import com.usa.doctorsapp.model.DoctorModel;
+import com.usa.doctorsapp.model.Doctor;
 import com.usa.doctorsapp.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,46 +13,46 @@ public class DoctorService {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    public List<DoctorModel> getAll(){return doctorRepository.getAll();}
-    public Optional<DoctorModel> getById(Integer id){return doctorRepository.getById(id);}
-    public DoctorModel save(DoctorModel doctorModel){
-        if(doctorModel.getId()==null){
-            return doctorRepository.save(doctorModel);
+    public List<Doctor> getAll(){return doctorRepository.getAll();}
+    public Optional<Doctor> getById(Integer id){return doctorRepository.getById(id);}
+    public Doctor save(Doctor doctor){
+        if(doctor.getId()==null){
+            return doctorRepository.save(doctor);
         }else{
-            Optional<DoctorModel> optionalDoctorModel=doctorRepository.getById(doctorModel.getId());
+            Optional<Doctor> optionalDoctorModel=doctorRepository.getById(doctor.getId());
             if(optionalDoctorModel.isEmpty()){
-                return doctorRepository.save(doctorModel);
+                return doctorRepository.save(doctor);
             }else{
-                return doctorModel;
+                return doctor;
             }
         }
     }
-    public DoctorModel update(DoctorModel doctorModel){
-        if (doctorModel.getId()!=null){
-            Optional<DoctorModel> optionalDoctorModel=doctorRepository.getById(doctorModel.getId());
+    public Doctor update(Doctor doctor){
+        if (doctor.getId()!=null){
+            Optional<Doctor> optionalDoctorModel=doctorRepository.getById(doctor.getId());
             if(!optionalDoctorModel.isEmpty()){
-                if (doctorModel.getName()!=null){
-                    optionalDoctorModel.get().setName(doctorModel.getName());
+                if (doctor.getName()!=null){
+                    optionalDoctorModel.get().setName(doctor.getName());
                 }
-                if (doctorModel.getDepartment()!=null){
-                    optionalDoctorModel.get().setDepartment(doctorModel.getDepartment());
+                if (doctor.getDepartment()!=null){
+                    optionalDoctorModel.get().setDepartment(doctor.getDepartment());
                 }
-                if(doctorModel.getYear()!=null){
-                    optionalDoctorModel.get().setYear(doctorModel.getYear());
+                if(doctor.getYear()!=null){
+                    optionalDoctorModel.get().setYear(doctor.getYear());
                 }
-                if(doctorModel.getDescription()!=null){
-                    optionalDoctorModel.get().setDescription(doctorModel.getDescription());
+                if(doctor.getDescription()!=null){
+                    optionalDoctorModel.get().setDescription(doctor.getDescription());
                 }
-                if(doctorModel.getSpecialty()!=null){
-                    optionalDoctorModel.get().setSpecialty(doctorModel.getSpecialty());
+                if(doctor.getSpecialty()!=null){
+                    optionalDoctorModel.get().setSpecialty(doctor.getSpecialty());
                 }
                 doctorRepository.save(optionalDoctorModel.get());
                 return optionalDoctorModel.get();
             }else{
-                return doctorModel;
+                return doctor;
             }
         }else {
-            return doctorModel;
+            return doctor;
         }
     }
 

@@ -1,8 +1,7 @@
 package com.usa.doctorsapp.repository;
 
-import com.usa.doctorsapp.model.MessageModel;
+import com.usa.doctorsapp.model.Message;
 import com.usa.doctorsapp.repository.crudrepository.MessageCrudRepository;
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,16 +13,16 @@ public class MessageRepository {
     @Autowired
     private MessageCrudRepository messageCrudRepository;
 
-    public List<MessageModel> getAll(){
-        return (List<MessageModel>) messageCrudRepository.findAll();
+    public List<Message> getAll(){
+        return (List<Message>) messageCrudRepository.findAll();
     }
-    public Optional<MessageModel> getById(Integer id){
+    public Optional<Message> getById(Integer id){
         return messageCrudRepository.findById(id);
     }
-    public MessageModel save(MessageModel message){
+    public Message save(Message message){
         return messageCrudRepository.save(message);
     }
-    public void delete(MessageModel message){
+    public void delete(Message message){
         messageCrudRepository.delete(message);
     }
 }

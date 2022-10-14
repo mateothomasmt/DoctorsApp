@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.service;
 
-import com.usa.doctorsapp.model.MessageModel;
+import com.usa.doctorsapp.model.Message;
 import com.usa.doctorsapp.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,36 +13,36 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
-    public List<MessageModel> getAll(){return messageRepository.getAll();}
-    public Optional<MessageModel> getById(Integer id){return messageRepository.getById(id);}
-    public MessageModel save(MessageModel messageModel){
-        if (messageModel.getIdMessage()==null){
-            return messageRepository.save(messageModel);
+    public List<Message> getAll(){return messageRepository.getAll();}
+    public Optional<Message> getById(Integer id){return messageRepository.getById(id);}
+    public Message save(Message message){
+        if (message.getIdMessage()==null){
+            return messageRepository.save(message);
         }else {
-            Optional<MessageModel> optionalMessageModel=messageRepository.getById(messageModel.getIdMessage());
+            Optional<Message> optionalMessageModel=messageRepository.getById(message.getIdMessage());
             if (optionalMessageModel.isEmpty()){
-                return messageRepository.save(messageModel);
+                return messageRepository.save(message);
             }else{
-                return messageModel;
+                return message;
             }
         }
     }
-    public MessageModel update(MessageModel messageModel){
-        if (messageModel.getIdMessage()!=null){
-            Optional<MessageModel> optionalMessageModel=messageRepository.getById(messageModel.getIdMessage());
+    public Message update(Message message){
+        if (message.getIdMessage()!=null){
+            Optional<Message> optionalMessageModel=messageRepository.getById(message.getIdMessage());
             if(!optionalMessageModel.isEmpty()){
-                if (messageModel.getMessageText()!=null){
-                    optionalMessageModel.get().setMessageText(messageModel.getMessageText());
-                    optionalMessageModel.get().setClient(messageModel.getClient());
-                    optionalMessageModel.get().setDoctor(messageModel.getDoctor());
+                if (message.getMessageText()!=null){
+                    optionalMessageModel.get().setMessageText(message.getMessageText());
+                    optionalMessageModel.get().setClient(message.getClient());
+                    optionalMessageModel.get().setDoctor(message.getDoctor());
                 }
                 messageRepository.save(optionalMessageModel.get());
                 return optionalMessageModel.get();
             }else{
-                return messageModel;
+                return message;
             }
         }else{
-            return messageModel;
+            return message;
         }
     }
     public boolean delete(Integer id){

@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MessageModel implements Serializable {
+public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMessage;
@@ -22,10 +22,10 @@ public class MessageModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idDoctor")
     @JsonIgnoreProperties({"messages","client","reservations"})
-    private DoctorModel doctor;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"messages","client","reservations"})
-    private ClientModel client;
+    private Client client;
 }

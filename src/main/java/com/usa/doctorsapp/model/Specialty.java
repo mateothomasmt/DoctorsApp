@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SpecialtyModel implements Serializable {
+public class Specialty implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,5 +23,5 @@ public class SpecialtyModel implements Serializable {
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "specialty")
     @JsonIgnoreProperties("specialty")
-    private List<DoctorModel> doctors;
+    private List<Doctor> doctors;
 }

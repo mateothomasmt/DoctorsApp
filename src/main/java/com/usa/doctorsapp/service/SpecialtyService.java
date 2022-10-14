@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.service;
 
-import com.usa.doctorsapp.model.SpecialtyModel;
+import com.usa.doctorsapp.model.Specialty;
 import com.usa.doctorsapp.repository.SpecialtyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,37 +12,37 @@ import java.util.Optional;
 public class SpecialtyService {
     @Autowired
     private SpecialtyRepository specialtyRepository;
-    public List<SpecialtyModel> getAll(){return specialtyRepository.getAll();}
-    public Optional<SpecialtyModel> getById(Integer id){return specialtyRepository.getById(id);}
-    public SpecialtyModel save(SpecialtyModel specialtyModel){
-        if (specialtyModel.getId()==null){
-            return specialtyRepository.save(specialtyModel);
+    public List<Specialty> getAll(){return specialtyRepository.getAll();}
+    public Optional<Specialty> getById(Integer id){return specialtyRepository.getById(id);}
+    public Specialty save(Specialty specialty){
+        if (specialty.getId()==null){
+            return specialtyRepository.save(specialty);
         }else {
-            Optional<SpecialtyModel> optionalSpecialtyModel=specialtyRepository.getById(specialtyModel.getId());
+            Optional<Specialty> optionalSpecialtyModel=specialtyRepository.getById(specialty.getId());
             if (optionalSpecialtyModel.isEmpty()){
-                return specialtyRepository.save(specialtyModel);
+                return specialtyRepository.save(specialty);
             }else{
-                return specialtyModel;
+                return specialty;
             }
         }
     }
-    public SpecialtyModel update(SpecialtyModel specialtyModel){
-        if(specialtyModel.getId()!=null){
-            Optional<SpecialtyModel> optionalSpecialtyModel=specialtyRepository.getById(specialtyModel.getId());
+    public Specialty update(Specialty specialty){
+        if(specialty.getId()!=null){
+            Optional<Specialty> optionalSpecialtyModel=specialtyRepository.getById(specialty.getId());
             if(!optionalSpecialtyModel.isEmpty()){
-                if(specialtyModel.getName()!=null){
-                    optionalSpecialtyModel.get().setName(specialtyModel.getName());
+                if(specialty.getName()!=null){
+                    optionalSpecialtyModel.get().setName(specialty.getName());
                 }
-                if (specialtyModel.getDescription()!=null){
-                    optionalSpecialtyModel.get().setDescription(specialtyModel.getDescription());
+                if (specialty.getDescription()!=null){
+                    optionalSpecialtyModel.get().setDescription(specialty.getDescription());
                 }
                 specialtyRepository.save(optionalSpecialtyModel.get());
                 return optionalSpecialtyModel.get();
             }else{
-                return specialtyModel;
+                return specialty;
             }
         }else {
-            return specialtyModel;
+            return specialty;
         }
     }
     public boolean delete(Integer id){

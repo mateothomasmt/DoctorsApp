@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ReservationModel implements Serializable {
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
@@ -25,11 +25,11 @@ public class ReservationModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnoreProperties("reservations")
-    private DoctorModel doctor;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"messages","reservations"})
-    private ClientModel client;
+    private Client client;
     private String score;
 }

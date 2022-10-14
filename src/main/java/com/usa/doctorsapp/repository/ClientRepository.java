@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.repository;
 
-import com.usa.doctorsapp.model.ClientModel;
+import com.usa.doctorsapp.model.Client;
 import com.usa.doctorsapp.repository.crudrepository.ClientCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,16 +13,16 @@ public class ClientRepository {
     @Autowired
     private ClientCrudRepository clientCrudRepository;
 
-    public List<ClientModel> getAll(){
-        return (List<ClientModel>) clientCrudRepository.findAll();
+    public List<Client> getAll(){
+        return (List<Client>) clientCrudRepository.findAll();
     }
-    public Optional<ClientModel> getById(Integer id){
+    public Optional<Client> getById(Integer id){
         return clientCrudRepository.findById(id);
     }
-    public ClientModel save(ClientModel client){
+    public Client save(Client client){
         return clientCrudRepository.save(client);
     }
-    public void delete(ClientModel client){
+    public void delete(Client client){
         clientCrudRepository.delete(client);
     }
 }

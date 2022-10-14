@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.service;
 
-import com.usa.doctorsapp.model.ClientModel;
+import com.usa.doctorsapp.model.Client;
 import com.usa.doctorsapp.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,50 +14,50 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public List<ClientModel> getAll(){
+    public List<Client> getAll(){
         return clientRepository.getAll();
     }
 
-    public Optional<ClientModel> getById(Integer id){
+    public Optional<Client> getById(Integer id){
         return clientRepository.getById(id);
     }
 
-    public ClientModel save(ClientModel clientModel){
-        if(clientModel.getIdClient()==null){
-            return clientRepository.save(clientModel);
+    public Client save(Client client){
+        if(client.getIdClient()==null){
+            return clientRepository.save(client);
         }else{
-            Optional<ClientModel> optionalClientModel=clientRepository.getById(clientModel.getIdClient());
+            Optional<Client> optionalClientModel=clientRepository.getById(client.getIdClient());
             if(optionalClientModel.isEmpty()){
-                return clientRepository.save(clientModel);
+                return clientRepository.save(client);
             }else{
-                return clientModel;
+                return client;
             }
         }
     }
 
-    public ClientModel update(ClientModel clientModel){
-        if(clientModel.getIdClient()!=null){
-            Optional<ClientModel> optionalClientModel=clientRepository.getById(clientModel.getIdClient());
+    public Client update(Client client){
+        if(client.getIdClient()!=null){
+            Optional<Client> optionalClientModel=clientRepository.getById(client.getIdClient());
             if(!optionalClientModel.isEmpty()){
-                if(clientModel.getName()!=null){
-                    optionalClientModel.get().setName(clientModel.getName());
+                if(client.getName()!=null){
+                    optionalClientModel.get().setName(client.getName());
                 }
-                if (clientModel.getEmail()!=null){
-                    optionalClientModel.get().setEmail(clientModel.getEmail());
+                if (client.getEmail()!=null){
+                    optionalClientModel.get().setEmail(client.getEmail());
                 }
-                if(clientModel.getPassword()!=null){
-                    optionalClientModel.get().setPassword(clientModel.getPassword());
+                if(client.getPassword()!=null){
+                    optionalClientModel.get().setPassword(client.getPassword());
                 }
-                if(clientModel.getAge()!=null){
-                    optionalClientModel.get().setAge(clientModel.getAge());
+                if(client.getAge()!=null){
+                    optionalClientModel.get().setAge(client.getAge());
                 }
                 clientRepository.save(optionalClientModel.get());
                 return optionalClientModel.get();
             }else{
-                return clientModel;
+                return client;
             }
         }else {
-            return clientModel;
+            return client;
         }
     }
 

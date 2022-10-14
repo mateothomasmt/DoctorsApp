@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.controller;
 
-import com.usa.doctorsapp.model.ClientModel;
+import com.usa.doctorsapp.model.Client;
 import com.usa.doctorsapp.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,22 +16,22 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
     @GetMapping("/all")
-    public List<ClientModel> getClients(){
+    public List<Client> getClients(){
         return  clientService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<ClientModel> getClient(@PathVariable("id") Integer id){
+    public Optional<Client> getClient(@PathVariable("id") Integer id){
         return clientService.getById(id);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientModel save(@RequestBody ClientModel clientModel){
-        return clientService.save(clientModel);
+    public Client save(@RequestBody Client client){
+        return clientService.save(client);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientModel update(@RequestBody ClientModel clientModel){
-        return clientService.update(clientModel);
+    public Client update(@RequestBody Client client){
+        return clientService.update(client);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

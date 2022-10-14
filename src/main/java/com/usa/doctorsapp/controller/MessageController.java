@@ -1,6 +1,6 @@
 package com.usa.doctorsapp.controller;
 
-import com.usa.doctorsapp.model.MessageModel;
+import com.usa.doctorsapp.model.Message;
 import com.usa.doctorsapp.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,22 +16,22 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
     @GetMapping("/all")
-    public List<MessageModel> getMessages(){
+    public List<Message> getMessages(){
         return messageService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<MessageModel> getMessage(@PathVariable("id")Integer id){
+    public Optional<Message> getMessage(@PathVariable("id")Integer id){
         return messageService.getById(id);
     }
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageModel save(@RequestBody MessageModel messageModel){
-        return messageService.save(messageModel);
+    public Message save(@RequestBody Message message){
+        return messageService.save(message);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageModel update(@RequestBody MessageModel messageModel){
-        return messageService.update(messageModel);
+    public Message update(@RequestBody Message message){
+        return messageService.update(message);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

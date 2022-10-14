@@ -11,5 +11,5 @@ import lombok.Setter;
 @Setter
 public class ClientReport {
     private Long total;
-    private ClientModel client;
+    private Client client;
 }
