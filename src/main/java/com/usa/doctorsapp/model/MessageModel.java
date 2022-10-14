@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class MessageModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     private String messageText;
 
     @ManyToOne

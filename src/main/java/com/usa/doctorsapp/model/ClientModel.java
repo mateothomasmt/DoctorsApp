@@ -17,7 +17,7 @@ import java.util.List;
 public class ClientModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idClient;
     private String email;
     private String password;
     private String name;
